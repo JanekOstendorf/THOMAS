@@ -11,6 +11,8 @@
 #define PORT 4242
 
 extern int axis[4];
+extern char button[9];
+extern int end;
 
 void error(const char *msg)
 {
@@ -19,7 +21,7 @@ void error(const char *msg)
     
 }
 
-int socket_server_start()
+void *socket_server()
 {
      int sockfd, newsockfd;
      socklen_t clilen;
@@ -51,15 +53,17 @@ int socket_server_start()
      
      clilen = sizeof(cli_addr);
      
-     newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
+     while(!end) {
+         
+         newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
      
-     if (newsockfd < 0) 
-          error("ERROR on accept");
-     
-     bzero(buffer,256);
-     
-     while(n = read(newsockfd,buffer,255)) {
-     
+        if (newsockfd < 0) 
+            error("ERROR on accept");
+
+        bzero(buffer,256);
+
+        n = read(newsockfd,buffer,255);
+
         if (n < 0) 
             error("ERROR reading from socket");
 
@@ -68,16 +72,17 @@ int socket_server_start()
             axis[i] = buffer[i];
 
         }
+        
+        for(int i = 0; i < 9; i++) {
+            
+            button[i] = buffer[i+4];
+            
+        }
+        
+        close(newsockfd);
      
      }
      
-     printf("Blub\n");
-     fflush(stdout);
-     
-     close(newsockfd);
-     
      close(sockfd);
-     
-     return 0;
      
 }

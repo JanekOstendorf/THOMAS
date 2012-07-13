@@ -35,7 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/socket.o \
-	${OBJECTDIR}/rs232thomas.o \
+	${OBJECTDIR}/rs232.o \
 	${OBJECTDIR}/main.o
 
 
@@ -68,10 +68,10 @@ ${OBJECTDIR}/socket.o: socket.c
 	${RM} $@.d
 	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/socket.o socket.c
 
-${OBJECTDIR}/rs232thomas.o: rs232thomas.c 
+${OBJECTDIR}/rs232.o: rs232.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/rs232thomas.o rs232thomas.c
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/rs232.o rs232.c
 
 ${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}

@@ -14,7 +14,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>main.c</itemPath>
-      <itemPath>rs232thomas.c</itemPath>
+      <itemPath>rs232.c</itemPath>
       <itemPath>socket.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
